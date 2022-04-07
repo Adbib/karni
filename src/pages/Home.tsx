@@ -104,48 +104,38 @@ export default function Home({}: Props) {
     UserLocation();
   }, []);
   return (
-    <div className="">
+    <div className="content">
       <Container>
         <Row
           style={{ textAlign: "center" }}
           className="first-row d-flex justify-content-md-center justify-content-sm-center align-items-center"
         >
           {!login && (
-            // <FacebookLogin
-            //   appId="729264435106871"
-            //   onSuccess={(response) => {
-            //     console.log("Login Success!");
-            //   }}
-            //   onFail={(error) => {
-            //     console.log("Login Failed!", error);
-            //   }}
-            //   style={{
-            //     background: "#FF6326 !important",
-            //     border: "none !important",
-            //     padding: 20,
-            //   }}
-            //   onProfileSuccess={onProfile}
-            //   render={({ onClick, logout }) => (
-
-            //   )}
-            // />
-            <a
-              ref={divRef}
-              id="loginBtn"
-              className="loginBtn"
-              style={
-                isDone
-                  ? { backgroundColor: "green !important" }
-                  : { backgroundColor: "#ff4c29 !important" }
-              }
-              onClick={handleCtribute}
-              href="#"
-            >
-              {isDone == "أنا مشارك!" ? "أنا مشارك!" : "شارك"}
-            </a>
+            <>
+              <p style={{ width: "80%" }}>
+                <a href="#"> #تحدي_الكارني </a>
+                خلص كريدي الحانوت على إنسان محتاج! إلى قررتي تشارك كليكي على هاد
+                البوطونة، باش الرقم يبقا يكبر، والناس يعرفو راه باقي الخير
+                فالدنيا، ويتشجعو ناس كثار حتى هوما يشاركو. عتق الناس من كريدي
+                الحانوت، وفرج الكربة ديالهم، والله يتقبل ويثبت الأجر.
+              </p>
+              <a
+                ref={divRef}
+                id="loginBtn"
+                className="loginBtn"
+                style={
+                  isDone
+                    ? { backgroundColor: "green !important" }
+                    : { backgroundColor: "#ff4c29 !important" }
+                }
+                onClick={handleCtribute}
+                href="#"
+              >
+                {isDone == "أنا مشارك!" ? "أنا مشارك!" : "شارك"}
+              </a>
+            </>
           )}
           {counter ? <h1> {counter} مشارك</h1> : <Loading />}
-          {login && <h1>{data && " على المشاركة " + data.name + " شكرا "} </h1>}
         </Row>
         <Row>
           <SocialShare />

@@ -69,6 +69,10 @@ body {
     display: ruby;
     display: -webkit-inline-box;
     text-align: center;
+    /* margin-bottom: 25% !important; */
+  }
+  .content {
+    margin-top: 25% !important;
   }
   .nav-link {
     color: black !important;
@@ -83,8 +87,16 @@ body {
     width: 80% !important;
   }
   .social {
-    height: 20vh;
+    height: 5vh;
     align-items: flex-end !important;
+  }
+  .textent {
+    height: 20vh;
+    align-items: end !important;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: flex-start;
   }
   .first-row {
     height: 40vh;
