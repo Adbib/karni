@@ -6,6 +6,11 @@
 /* #root {
   background: #fffbf5 !important;
 } */
+.first-row {
+  height: 70vh;
+  display: flex !important;
+  align-content: center;
+}
 .loginBtn {
   background: #ff4c29 !important;
   border: none !important;
@@ -57,7 +62,7 @@
 
 @media only screen and (max-width: 479px) {
   .navbar-nav {
-    font-size: 12px;
+    font-size: 14px;
     display: ruby !important;
     text-align: center;
   }
@@ -70,8 +75,14 @@
   }
   .loginBtn {
     margin-bottom: 40px !important;
+    padding: 10px !important;
+    width: 80% !important;
   }
   .social {
     height: 20vh;
+    align-items: flex-start;
+  }
+  .first-row {
+    height: 40vh;
   }
 }

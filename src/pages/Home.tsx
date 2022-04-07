@@ -74,11 +74,11 @@ export default function Home({}: Props) {
     getCounter();
   }, []);
   return (
-    <div className="d-flex justify-content-md-center align-items-center vh-100">
+    <div className="">
       <Container>
         <Row
           style={{ textAlign: "center" }}
-          className=" justify-content-md-center justify-content-sm-center align-items-center"
+          className="first-row d-flex justify-content-md-center justify-content-sm-center align-items-center"
         >
           {!login && (
             <FacebookLogin
