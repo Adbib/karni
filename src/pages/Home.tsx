@@ -9,12 +9,14 @@ import {
   doc,
   getDoc,
   writeBatch,
+  addDoc,
 } from "firebase/firestore";
 import { getFirestore } from "firebase/firestore";
 
 import "firebase/compat/firestore";
 import "firebase/compat/auth";
 import SocialShare from "../components/SocialShare";
+import UserLocation from "../hooks/useUserLocation";
 type Props = {};
 type dataTypes = {
   name: string;
@@ -69,9 +71,29 @@ export default function Home({}: Props) {
       setCounter(docSnap1.data().LastOne);
     }
   };
+  const handleCtribute = async () => {
+    const [loaction, setLocation] = await UserLocation();
+    // console.log(loaction.query);
 
+    const querySnapshot = await getDocs(collection(db, "users"));
+    const ips: any = [];
+    querySnapshot.forEach(async (doc) => {
+      ips.push(doc.data().ip);
+    });
+    // console.log(ips);
+    if (ips.length >= 1 && ips.includes(loaction.query)) {
+      alert("أنت مشارك من قبل");
+    } else {
+      const docRef = await addDoc(collection(db, "users"), {
+        ip: loaction.query,
+      });
+
+      updateCounter();
+    }
+  };
   useEffect(() => {
     getCounter();
+    UserLocation();
   }, []);
   return (
     <div className="">
@@ -81,36 +103,37 @@ export default function Home({}: Props) {
           className="first-row d-flex justify-content-md-center justify-content-sm-center align-items-center"
         >
           {!login && (
-            <FacebookLogin
-              appId="729264435106871"
-              onSuccess={(response) => {
-                console.log("Login Success!");
-              }}
-              onFail={(error) => {
-                console.log("Login Failed!", error);
-              }}
-              style={{
-                background: "#FF6326 !important",
-                border: "none !important",
-                padding: 20,
-              }}
-              onProfileSuccess={onProfile}
-              render={({ onClick, logout }) => (
-                <a
-                  //   style={{
-                  //     background: "#FF6326 !important",
-                  //     border: "none !important",
-                  //     padding: 20,
-                  //   }}
-                  className="loginBtn"
-                  onClick={onClick}
-                  //   onLogoutClick={}
-                  href="#"
-                >
-                  شارك
-                </a>
-              )}
-            />
+            // <FacebookLogin
+            //   appId="729264435106871"
+            //   onSuccess={(response) => {
+            //     console.log("Login Success!");
+            //   }}
+            //   onFail={(error) => {
+            //     console.log("Login Failed!", error);
+            //   }}
+            //   style={{
+            //     background: "#FF6326 !important",
+            //     border: "none !important",
+            //     padding: 20,
+            //   }}
+            //   onProfileSuccess={onProfile}
+            //   render={({ onClick, logout }) => (
+
+            //   )}
+            // />
+            <a
+              //   style={{
+              //     background: "#FF6326 !important",
+              //     border: "none !important",
+              //     padding: 20,
+              //   }}
+              className="loginBtn"
+              onClick={handleCtribute}
+              //   onLogoutClick={}
+              href="#"
+            >
+              شارك
+            </a>
           )}
           {counter ? <h1> {counter} مشارك</h1> : <Loading />}
           {login && <h1>{data && " على المشاركة " + data.name + " شكرا "} </h1>}
