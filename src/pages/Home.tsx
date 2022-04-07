@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Container, Row } from "react-bootstrap";
 import Loading from "../components/Loading";
 import FacebookLogin from "@greatsumini/react-facebook-login";
@@ -45,6 +45,8 @@ export default function Home({}: Props) {
   const [data, setData] = useState<dataTypes | null>(null);
   const [picture, setPicture] = useState("");
   const [counter, setCounter] = useState<number | null>(null);
+  const [isDone, setIsDone] = useState<string | null>(null);
+  const divRef = useRef<any>(null);
   const onProfile = (response: any) => {
     console.log("Get Profile Success!", response);
     updateCounter();
@@ -80,14 +82,20 @@ export default function Home({}: Props) {
     querySnapshot.forEach(async (doc) => {
       ips.push(doc.data().ip);
     });
-    // console.log(ips);
+    console.log(ips);
     if (ips.length >= 1 && ips.includes(loaction.ip)) {
+      console.log(2);
       alert("أنت مشارك من قبل");
     } else {
+      console.log(2);
       const docRef = await addDoc(collection(db, "users"), {
         ip: loaction.ip,
       });
 
+      divRef.current.style =
+        "animation: shake 0.5s;animation-iteration-count:1";
+      divRef.current.style.backgroundColor = "green";
+      setIsDone("أنا مشارك!");
       updateCounter();
     }
   };
@@ -122,17 +130,18 @@ export default function Home({}: Props) {
             //   )}
             // />
             <a
-              //   style={{
-              //     background: "#FF6326 !important",
-              //     border: "none !important",
-              //     padding: 20,
-              //   }}
+              ref={divRef}
+              id="loginBtn"
               className="loginBtn"
+              style={
+                isDone
+                  ? { backgroundColor: "green !important" }
+                  : { backgroundColor: "#ff4c29 !important" }
+              }
               onClick={handleCtribute}
-              //   onLogoutClick={}
               href="#"
             >
-              شارك
+              {isDone == "أنا مشارك!" ? "أنا مشارك!" : "شارك"}
             </a>
           )}
           {counter ? <h1> {counter} مشارك</h1> : <Loading />}

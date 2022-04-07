@@ -14,7 +14,7 @@ const getUserData = async (
   return infoToJSON;
 };
 
-export default async function UserLocation() {
+export default async function useUserLocation() {
   const getCache: string | Storage | any = localStorage.getItem("userLocation");
   let cache = JSON.parse(getCache);
   const setUserLocation = (location: Object) => {
