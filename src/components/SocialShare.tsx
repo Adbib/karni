@@ -8,7 +8,7 @@ export default function SocialShare({}: Props) {
       <div className="col-md-12 col-sm-12">
         <div className="textent">
           <p style={{ textAlign: "center" }}>
-            نشر هاد الحملة معا خمسة الناس كتعرفهم! والله يتقبل ويثبت الأجر.{" "}
+            نشر هاد الحملة معا خمسة الناس كتعرفهم! واالله يتقبل ويثبت الأجر.{" "}
           </p>
         </div>
       </div>
