@@ -50,15 +50,15 @@
   justify-content: center;
   align-items: flex-start;
 }
-.social a {
+.social i {
   padding: 5px;
   margin: 5px;
   background: gray !important;
   border-radius: 100%;
   color: white;
-  height: 30px;
-  width: 30px;
-  font-size: 20px;
+  height: 35px;
+  width: 35px;
+  font-size: 26px;
 }
 
 @media only screen and (max-width: 479px) {
