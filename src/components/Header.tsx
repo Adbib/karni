@@ -18,11 +18,11 @@ export default function Header({}: Props) {
               كيفية المشاركة
             </Nav.Link>
           </li>
-          <li className="li-item">
+          {/* <li className="li-item">
             <Nav.Link style={{ padding: 30 }} href="#pricing">
               اتصل بنا
             </Nav.Link>
-          </li>
+          </li> */}
         </Nav>
       </Container>
     </Navbar>
