@@ -73,7 +73,7 @@ export default function Home({}: Props) {
   };
   const handleCtribute = async () => {
     const [loaction, setLocation] = await UserLocation();
-    // console.log(loaction.query);
+    // console.log(loaction.ip);
 
     const querySnapshot = await getDocs(collection(db, "users"));
     const ips: any = [];
@@ -81,11 +81,11 @@ export default function Home({}: Props) {
       ips.push(doc.data().ip);
     });
     // console.log(ips);
-    if (ips.length >= 1 && ips.includes(loaction.query)) {
+    if (ips.length >= 1 && ips.includes(loaction.ip)) {
       alert("أنت مشارك من قبل");
     } else {
       const docRef = await addDoc(collection(db, "users"), {
-        ip: loaction.query,
+        ip: loaction.ip,
       });
 
       updateCounter();

@@ -1,6 +1,6 @@
 // import { useEffect } from "react";
 const getUserData = async (
-  site: string = "http://ip-api.com/json"
+  site: string = "https://json.geoiplookup.io/"
 ): Promise<any> => {
   let getInfo: Response;
   let infoToJSON: any;
@@ -8,7 +8,7 @@ const getUserData = async (
     getInfo = await fetch(site);
     infoToJSON = await getInfo.json();
   } catch (error) {
-    getInfo = await getUserData("https://json.geoiplookup.io/");
+    getInfo = await getUserData("http://ip-api.com/json");
     infoToJSON = await getInfo.json();
   }
   return infoToJSON;
