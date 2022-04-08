@@ -102,6 +102,24 @@ body {
     height: 40vh;
   }
 }
+@media only screen and (min-width: 100px) {
+  .row-social {
+    margin-top: 100px !important;
+  }
+  .first-row p {
+    margin-top: 100px !important;
+  }
+  .first-row {
+    margin-bottom: 70px !important;
+  }
+  .howText {
+    margin-top: 100px !important;
+  }
+  /* .mosha
+  /* .mosharikText {
+    margin-bottom: 10px !important;
+  } */
+}
 
 @keyframes shake {
   0% {

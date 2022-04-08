@@ -135,9 +135,13 @@ export default function Home({}: Props) {
               </a>
             </>
           )}
-          {counter ? <h1> {counter} مشارك</h1> : <Loading />}
+          {counter ? (
+            <h1 className="mosharikText"> {counter} مشارك</h1>
+          ) : (
+            <Loading />
+          )}
         </Row>
-        <Row>
+        <Row className="row-social">
           <SocialShare />
         </Row>
       </Container>

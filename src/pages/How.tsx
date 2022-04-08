@@ -11,8 +11,12 @@ export default function How({}: Props) {
           className="first-row d-flex justify-content-md-center justify-content-sm-center align-items-center"
         >
           <p style={{ width: "80%", textAlign: "right", lineHeight: "33px" }}>
-            شارك في <a href="#"> #تحدي_الكارني </a> خلص كريدي الحانوت على إنسان
-            محتاج!
+            شارك في{" "}
+            <a className="howText" href="#">
+              {" "}
+              #تحدي_الكارني{" "}
+            </a>{" "}
+            خلص كريدي الحانوت على إنسان محتاج!
             <br />
             أجي نعاونوهم بهاد الطريقة الساهلة:
             <br />
