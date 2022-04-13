@@ -17,6 +17,7 @@ import "firebase/compat/firestore";
 import "firebase/compat/auth";
 import SocialShare from "../components/SocialShare";
 import UserLocation from "../hooks/useUserLocation";
+import useCache from "../hooks/useCache";
 type Props = {};
 type dataTypes = {
   name: string;
@@ -46,9 +47,13 @@ export default function Home({}: Props) {
   const [picture, setPicture] = useState("");
   const [counter, setCounter] = useState<number | null>(null);
   const [isDone, setIsDone] = useState<string | null>(null);
+  const [clicked, setClicked] = useState<boolean>(false);
   const divRef = useRef<any>(null);
+  const [cached, setCache] = useCache({ clicked: false });
+  // console.log(typeof cached.clicked);
+  // console.log(cached, setCache);
   const onProfile = (response: any) => {
-    console.log("Get Profile Success!", response);
+    // console.log("Get Profile Success!", response);
     updateCounter();
     setData(response);
     setLogin(true);
@@ -68,9 +73,11 @@ export default function Home({}: Props) {
     batch.update(docRef, { LastOne: docSnap.data().LastOne + 1 });
     await batch.commit();
     const docSnap1: any = await getDoc(docRef);
-    console.log("newData", docSnap1.data());
+    // console.log("newData", docSnap1.data());
     if (docSnap1.data().LastOne) {
       setCounter(docSnap1.data().LastOne);
+      setClicked(true);
+      setCache({ clicked: true });
     }
   };
   const handleCtribute = async () => {
@@ -82,8 +89,11 @@ export default function Home({}: Props) {
     querySnapshot.forEach(async (doc) => {
       ips.push(doc.data().ip);
     });
-    console.log(ips);
-    if (ips.length >= 1 && ips.includes(loaction.ip)) {
+    // console.log(ips);
+    if (
+      (ips.length >= 1 && ips.includes(loaction.ip)) ||
+      (cached && cached.clicked)
+    ) {
       console.log(2);
       alert("أنت مشارك من قبل");
     } else {
